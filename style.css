@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.select-city {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+}
+
+.selectable {
+  width: max-content;
+  border: 1px solid grey;
+  padding: 10px;
+}
+
+.selectable:hover {
+  cursor: pointer;
+  background: #e9f5f9;
+}
