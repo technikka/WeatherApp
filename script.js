@@ -25,6 +25,7 @@ const geocodeZipcodeCall = (zipcode) => {
   );
 };
 
+
 const currentWeatherCall = (lat, lon) => {
   return (
     "https://api.openweathermap.org/data/2.5/weather?" +
@@ -57,7 +58,7 @@ async function searchLocation(cityName) {
     if (dataArray.length > 0) {
       displayLocations(dataArray);
     } else {
-      displayLocationInvalid();
+      displayLocationNotFound();
     }
   } catch (error) {
     console.log(error);
@@ -78,44 +79,57 @@ async function searchZipcode(zipcode) {
   }
 }
 
+const setLocationObj = (value) => {
+  if (typeof value === "object") {
+    locationObj = value;
+  } else if (/^[0-9]{5}(?:-[0-9]{4})?$/.test(value)) {
+    // valid zipcode
+    locationObj = searchZipcode(value);
+  } else if (/^([^a-zA-Z]*[A-Za-z]){4}[\s\S]*/.test(value)) {
+    locationObj = searchLocation(value); // valid string
+  } else {
+    displayLocationInvalid();
+  }
+};
+
 // Dom manipulation
 const searchField = document.querySelector("input[type=text]");
 const searchBtn = document.querySelector("input[type=submit");
+const searchResults = document.querySelector(".select-city");
+const errorDiv = document.querySelector(".error");
 
 searchBtn.addEventListener("click", (event) => {
+  errorDiv.textContent = '';
+  searchResults.textContent = '';
   event.preventDefault();
-  let value = searchField.value;
-  if ((/^[0-9]{5}(?:-[0-9]{4})?$/).test(value)) { // valid zipcode
-    locationObj = searchZipcode(value);
-  } else {
-    locationObj = searchLocation(value);
-  }
-  console.log(locationObj);
+  setLocationObj(searchField.value);
 });
-
-const container = document.querySelector(".select-city");
 
 const displayLocations = (locationsArray) => {
   locationsArray.forEach(function (location) {
     let newDiv = document.createElement("div");
     newDiv.classList.add("selectable");
-    container.appendChild(newDiv);
+    searchResults.appendChild(newDiv);
     newDiv.textContent = location.name + ", " + location.state;
 
     newDiv.addEventListener("click", function () {
       let nodeList = document.querySelectorAll(".selectable");
       let index = Array.from(nodeList).indexOf(this);
-      locationObj = locationsArray[index];
+      setLocationObj(locationsArray[index]);
       currentWeather();
     });
   });
 };
 
-const displayLocationInvalid = () => {
-  const div = document.querySelector(".error");
-  div.textContent = "That location was not found in our database";
+const displayCurrentLocation = (location = locationObj.name) => {
+  const header = document.querySelector(".current-location");
+  header.textContent = location;
 };
 
-// // searchLocation("jacksonville");
-// searchZipcode('92115');
-// // console.log(geocodeZipcodeCall(92115))
+const displayLocationInvalid = () => {
+  errorDiv.textContent = "Please enter a valid zipcode or string";
+};
+
+const displayLocationNotFound = () => {
+  errorDiv.textContent = "That location was not found in our database";
+};
