@@ -3,11 +3,24 @@ const searchBtn = document.querySelector("input[type=submit");
 const searchResults = document.querySelector(".select-city");
 const errorDiv = document.querySelector(".error");
 
+const displayCurrentWeather = () => {
+  displayCurrentLocation();
+  // some other stuff
+};
+
 searchBtn.addEventListener("click", (event) => {
   errorDiv.textContent = "";
   searchResults.textContent = "";
   event.preventDefault();
-  setLocationObj(searchField.value);
+
+  let input = searchField.value;
+  if (/^[0-9]{5}(?:-[0-9]{4})?$/.test(input)) {
+    searchByZipcode(input);
+  } else if (/^([^a-zA-Z]*[A-Za-z]){4}[\s\S]*/.test(input)) {
+    searchByCity(input);
+  } else {
+    displayLocationInvalid();
+  };
 });
 
 const displayLocations = (locationsArray) => {
@@ -21,7 +34,7 @@ const displayLocations = (locationsArray) => {
       let nodeList = document.querySelectorAll(".selectable");
       let index = Array.from(nodeList).indexOf(this);
       setLocationObj(locationsArray[index]);
-      getCurrentWeather();
+      searchResults.textContent = "";
     });
   });
 };

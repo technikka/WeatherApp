@@ -2,17 +2,8 @@ const apiKey = "76431272d389605d0569ccddf5351f6b";
 let locationObj;
 
 const setLocationObj = (value) => {
-  if (typeof value === "object") {
-    locationObj = value;
-  } else if (/^[0-9]{5}(?:-[0-9]{4})?$/.test(value)) {
-    // valid zipcode
-    locationObj = searchByZipcode(value);
-  } else if (/^([^a-zA-Z]*[A-Za-z]){4}[\s\S]*/.test(value)) {
-    locationObj = searchByCity(value); // valid string
-  } else {
-    displayLocationInvalid();
-  }
-};
+  locationObj = value
+}
 
 async function getCurrentWeather() {
   try {
@@ -21,7 +12,7 @@ async function getCurrentWeather() {
       { mode: "cors" }
     );
     let dataArray = await response.json();
-    console.log(dataArray);
+    return dataArray;
   } catch (error) {
     console.log(error);
   }
@@ -29,7 +20,7 @@ async function getCurrentWeather() {
 
 async function searchByCity(cityName) {
   try {
-    let response = await fetch(callbyLocationUrl(cityName), { mode: "cors" });
+    let response = await fetch(callbyCityUrl(cityName), { mode: "cors" });
     let dataArray = await response.json();
     if (dataArray.length > 0) {
       displayLocations(dataArray);
@@ -46,7 +37,7 @@ async function searchByZipcode(zipcode) {
     let response = await fetch(callbyZipcodeUrl(zipcode), { mode: "cors" });
     let data = await response.json();
     if (data) {
-      console.log(data);
+      setLocationObj(data);
     } else {
       displayLocationInvalid();
     }
@@ -55,7 +46,7 @@ async function searchByZipcode(zipcode) {
   }
 }
 
-const callbyLocationUrl = (cityName, limit = 5) => {
+const callbyCityUrl = (cityName, limit = 5) => {
   return (
     "http://api.openweathermap.org/geo/1.0/direct?" +
     "q=" +
