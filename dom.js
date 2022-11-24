@@ -2,6 +2,7 @@ const searchField = document.querySelector("input[type=text]");
 const searchBtn = document.querySelector("input[type=submit");
 const searchResults = document.querySelector(".select-city");
 const errorDiv = document.querySelector(".error");
+const locationHeader = document.querySelector(".current-location");
 
 const displayCurrentWeather = () => {
   displayCurrentLocation();
@@ -20,7 +21,7 @@ searchBtn.addEventListener("click", (event) => {
     searchByCity(input);
   } else {
     displayLocationInvalid();
-  };
+  }
 });
 
 const displayLocations = (locationsArray) => {
@@ -33,21 +34,24 @@ const displayLocations = (locationsArray) => {
     newDiv.addEventListener("click", function () {
       let nodeList = document.querySelectorAll(".selectable");
       let index = Array.from(nodeList).indexOf(this);
-      setLocationObj(locationsArray[index]);
+      setLocationObj(locationsArray[index]).then(() => {
+        displayCurrentWeather();
+      });
       searchResults.textContent = "";
     });
   });
 };
 
-const displayCurrentLocation = (location = locationObj.name) => {
-  const header = document.querySelector(".current-location");
-  header.textContent = location;
+const displayCurrentLocation = () => {
+  locationHeader.textContent = locationObj.name + ', ' + locationObj.state;
 };
 
 const displayLocationInvalid = () => {
+  locationHeader.textContent = "";
   errorDiv.textContent = "Please enter a valid zipcode or string";
 };
 
 const displayLocationNotFound = () => {
+  locationHeader.textContent = "";
   errorDiv.textContent = "That location was not found in our database";
 };

@@ -1,9 +1,12 @@
 const apiKey = "76431272d389605d0569ccddf5351f6b";
 let locationObj;
+let weatherObj;
 
-const setLocationObj = (value) => {
-  locationObj = value
-}
+const setLocationObj = async (value) => {
+  locationObj = value;
+  weatherObj = await getCurrentWeather(value.lat, value.lon);
+  return weatherObj;
+};
 
 async function getCurrentWeather() {
   try {
@@ -37,7 +40,9 @@ async function searchByZipcode(zipcode) {
     let response = await fetch(callbyZipcodeUrl(zipcode), { mode: "cors" });
     let data = await response.json();
     if (data) {
-      setLocationObj(data);
+      setLocationObj(data).then(() => {
+        displayCurrentWeather();
+      });
     } else {
       displayLocationInvalid();
     }
