@@ -3,10 +3,34 @@ const searchBtn = document.querySelector("input[type=submit");
 const searchResults = document.querySelector(".select-city");
 const errorDiv = document.querySelector(".error");
 const locationHeader = document.querySelector(".current-location");
+const content = document.querySelector(".content");
+const tempUnit = document.querySelector("input[type=range]");
+
+tempUnit.addEventListener("change", () => {
+  // change temperatures to celcius
+  // if tempUnit.value === 0
+  // convert all to farenheight
+  // if tempUnit.value === 1
+  // convert all to celcius
+});
+
+const displayResults = () => {
+  displayCurrentLocation();
+  displayCurrentWeather();
+};
 
 const displayCurrentWeather = () => {
-  displayCurrentLocation();
-  // some other stuff
+  displayCurrentTemp();
+};
+
+const displayCurrentTemp = () => {
+
+  const tempDiv = document.querySelector(".current-temp");
+  if (tempUnit.value === "0") {
+    tempDiv.textContent = currentTemp() + "\u00B0";
+  } else {
+    tempDiv.textContent = tempToCelsius(currentTemp()) + "\u00B0";
+  }
 };
 
 searchBtn.addEventListener("click", (event) => {
@@ -35,7 +59,7 @@ const displayLocations = (locationsArray) => {
       let nodeList = document.querySelectorAll(".selectable");
       let index = Array.from(nodeList).indexOf(this);
       setLocationObj(locationsArray[index]).then(() => {
-        displayCurrentWeather();
+        displayResults();
       });
       searchResults.textContent = "";
     });
@@ -43,7 +67,7 @@ const displayLocations = (locationsArray) => {
 };
 
 const displayCurrentLocation = () => {
-  locationHeader.textContent = locationObj.name + ', ' + locationObj.state;
+  locationHeader.textContent = locationObj.name + ", " + locationObj.state;
 };
 
 const displayLocationInvalid = () => {

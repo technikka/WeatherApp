@@ -8,14 +8,24 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <form action="">
-    <label for="search-location">Search By City or Zipcode</label>
-    <input type="text" name="search-location">
-    <input type="submit" value="Find">
-  </form>
-  <h1 class="current-location"></h1>
-  <div class="error"></div>
-  <div class="select-city"></div>
+  <div class="content">
+    <form action="">
+      <label for="search-location">Search By City or Zipcode</label>
+      <input type="text" name="search-location">
+      <input type="submit" value="Find">
+    </form>
+    <div class="toolbar">
+      <div class="temp-unit">
+        <span>F</span>
+        <input type="range" min="0" max="1" value="0" step="1">
+        <span>C</span>
+      </div>
+    </div>
+    <h1 class="current-location"></h1>
+    <div class="error"></div>
+    <div class="select-city"></div>
+    <div class="current-temp"></div>
+  </div>
   <script src="api.js"></script>
   <script src="dom.js"></script>
 </body>

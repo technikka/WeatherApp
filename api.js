@@ -8,6 +8,46 @@ const setLocationObj = async (value) => {
   return weatherObj;
 };
 
+const currentTemp = () => {
+  return Math.round(weatherObj.main.temp);
+};
+
+const lowTemp = () => {
+  return Math.round(weatherObj.main.temp_min);
+};
+
+const hightTemp = () => {
+  return Math.round(weatherObj.main.temp_max);
+};
+
+const tempToCelsius = (farenheight) => {
+  return Math.round(farenheight - 32 * 0.5556);
+};
+
+const feelsLike = () => {
+  return weatherObj.main.feels_like;
+};
+
+const humidity = () => {
+  return weatherObj.main.humidity;
+};
+
+const pressure = () => {
+  return weatherObj.main.pressure;
+};
+
+const visibility = () => {
+  return weatherObj.visibility;
+}
+
+const windSpeed = () => {
+  return weatherObj.wind.speed;
+}
+
+const weatherDescription = () => {
+  return weatherObj.weather[0].description;
+}
+
 async function getCurrentWeather() {
   try {
     let response = await fetch(
@@ -41,7 +81,7 @@ async function searchByZipcode(zipcode) {
     let data = await response.json();
     if (data) {
       setLocationObj(data).then(() => {
-        displayCurrentWeather();
+        displayResults();
       });
     } else {
       displayLocationInvalid();
@@ -82,6 +122,7 @@ const callCurrentWeatherUrl = (lat, lon) => {
     lat +
     "&lon=" +
     lon +
+    "&units=imperial" +
     "&appid=" +
     apiKey
   );
