@@ -7,8 +7,6 @@ body {
 
 .content {
   max-width: 480px;
-  /* background-position: 50% 0;
-  background-size: cover; */
 }
 
 .dark-background {
@@ -57,7 +55,7 @@ input[type=range] {
 
 form {
   grid-row-start: 1;
-  justify-self: start;
+  grid-column-start: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -70,7 +68,7 @@ form input[type=text] {
 }
 
 form input[type=text]:focus {
-  outline: solid #4482a7;
+  outline: solid #44a769;
 }
 
 form input[type=submit] {
@@ -82,4 +80,17 @@ form input[type=submit]:hover {
   cursor: pointer;
 }
 
+.toolbar {
+  grid-column-start: 1;
+}
 
+.error {
+  display: none;
+}
+
+.error.show {
+  grid-column-start: 1;
+  grid-row-start: 2;
+  display: block;
+  color: #44a769;
+}

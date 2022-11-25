@@ -32,10 +32,6 @@ const humidity = () => {
   return weatherObj.main.humidity;
 };
 
-// const pressure = () => {
-//   return weatherObj.main.pressure;
-// };
-
 const visibility = () => {
   return weatherObj.visibility;
 }

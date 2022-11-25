@@ -19,9 +19,11 @@
 }
 
 #menu-drawer {
+  width: max-content;
   max-width: 480px;
   display: grid;
   grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 36px;
   align-items: center;
   justify-items: center;
   justify-content: center;
@@ -34,6 +36,7 @@
   z-index: -10;
   opacity: 0%;
   transition: all 0.3s;
+  border-bottom-right-radius: 25px;
 }
 
 #menu-drawer.show {
@@ -49,6 +52,7 @@
 
 .close {
   grid-row-start: 3;
+  grid-column-start: 2;
   justify-self: right;
   display: flex;
   align-items: center;

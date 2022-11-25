@@ -6,6 +6,7 @@ const locationHeader = document.querySelector(".current-location");
 const content = document.querySelector(".content");
 const backgroundImage = document.querySelector(".background-image");
 const tempUnit = document.querySelector("input[type=range]");
+const weatherProperties = document.querySelector('.weather-properties');
 
 tempUnit.addEventListener("change", () => {
   if (weatherObj) {
@@ -17,6 +18,7 @@ tempUnit.addEventListener("change", () => {
 });
 
 const displayResults = () => {
+  
   displayCurrentLocation();
   displayCurrentWeather();
   displayBackgroundImage();
@@ -61,46 +63,49 @@ const displayHighTemp = () => {
 };
 
 const displayHumidity = () => {
-  const humDiv = document.querySelector('.humidity');
+  const humDiv = document.querySelector(".humidity");
   humDiv.textContent = humidity() + "\u0025" + " humidity";
-}
+};
 
 const formatVisibility = (meters) => {
   if (meters >= 1000) {
-    let numOfKm = Math.round(meters / 1000); 
+    let numOfKm = Math.round(meters / 1000);
     return numOfKm + " km";
   } else {
     return meters + " m";
   }
-}
+};
 const displayVisibility = () => {
-  const visDiv = document.querySelector('.visibility');
+  const visDiv = document.querySelector(".visibility");
   visDiv.textContent = formatVisibility(visibility()) + " visibility";
-}
+};
 
 const displayWindSpeed = () => {
-  const windDiv = document.querySelector('.wind-speed');
+  const windDiv = document.querySelector(".wind-speed");
   windDiv.textContent = windSpeed() + " mph";
-}
+};
 
 searchBtn.addEventListener("click", (event) => {
   errorDiv.textContent = "";
   searchResults.textContent = "";
   event.preventDefault();
+  toggleError();
 
   let input = searchField.value;
   if (/^[0-9]{5}(?:-[0-9]{4})?$/.test(input)) {
     searchByZipcode(input);
+    toggleTrigger();
+    toggleDrawer();
   } else if (/^([^a-zA-Z]*[A-Za-z]){4}[\s\S]*/.test(input)) {
     searchByCity(input);
   } else {
     displayLocationInvalid();
   }
-  toggleTrigger();
-  toggleDrawer();
 });
 
 const displayLocations = (locationsArray) => {
+  toggleTrigger();
+  toggleDrawer();
   locationsArray.forEach(function (location) {
     let newDiv = document.createElement("div");
     newDiv.classList.add("selectable");
@@ -122,13 +127,25 @@ const displayCurrentLocation = () => {
   locationHeader.textContent = locationObj.name + ", " + locationObj.state;
 };
 
+const toggleError = (error) => {
+  if (error) {
+    errorDiv.classList.add("show");
+    errorDiv.classList.add("dark-background");
+  } else {
+    errorDiv.classList.remove('show')
+    errorDiv.classList.remove('dark-background')
+  }
+};
+
 const displayLocationInvalid = () => {
   locationHeader.textContent = "";
+  toggleError(true);
   errorDiv.textContent = "Please enter a valid zipcode or string";
 };
 
 const displayLocationNotFound = () => {
   locationHeader.textContent = "";
+  toggleError(true);
   errorDiv.textContent = "That location was not found in our database";
 };
 
