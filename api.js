@@ -16,7 +16,7 @@ const lowTemp = () => {
   return Math.round(weatherObj.main.temp_min);
 };
 
-const hightTemp = () => {
+const highTemp = () => {
   return Math.round(weatherObj.main.temp_max);
 };
 
@@ -25,16 +25,16 @@ const tempToCelsius = (farenheight) => {
 };
 
 const feelsLike = () => {
-  return weatherObj.main.feels_like;
+  return Math.round(weatherObj.main.feels_like);
 };
 
 const humidity = () => {
   return weatherObj.main.humidity;
 };
 
-const pressure = () => {
-  return weatherObj.main.pressure;
-};
+// const pressure = () => {
+//   return weatherObj.main.pressure;
+// };
 
 const visibility = () => {
   return weatherObj.visibility;
