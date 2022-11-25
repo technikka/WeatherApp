@@ -2,12 +2,13 @@ body {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  font-family: "Charcoal", sans-serif
 }
 
 .content {
   max-width: 480px;
-  background-position: 50% 0;
-  background-size: cover;
+  /* background-position: 50% 0;
+  background-size: cover; */
 }
 
 .dark-background {
@@ -53,3 +54,32 @@ body {
 input[type=range] {
   width: 50px;
 }
+
+form {
+  grid-row-start: 1;
+  justify-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form input[type=text] {
+  border-radius: 5px;
+  height: 22px;
+  border: none;
+}
+
+form input[type=text]:focus {
+  outline: solid #4482a7;
+}
+
+form input[type=submit] {
+  width: 50px;
+  margin: auto;
+}
+
+form input[type=submit]:hover {
+  cursor: pointer;
+}
+
+
