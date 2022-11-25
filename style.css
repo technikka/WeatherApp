@@ -5,8 +5,29 @@ body {
 }
 
 .content {
-  border: 1px solid red;
   max-width: 480px;
+  background-position: 50% 0;
+  background-size: cover;
+}
+
+.dark-background {
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: rgba(0,0,0, 0.3);
+  color: white; 
+}
+
+.background-image {
+  background-image: url("assets/clear.jpg");
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  opacity: 50%;
+  z-index: -1;
 }
 
 .select-city {

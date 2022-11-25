@@ -44,8 +44,8 @@ const windSpeed = () => {
   return weatherObj.wind.speed;
 }
 
-const weatherDescription = () => {
-  return weatherObj.weather[0].description;
+const weatherTypeId = () => {
+  return weatherObj.weather[0].id;
 }
 
 async function getCurrentWeather() {

@@ -4,19 +4,46 @@ const searchResults = document.querySelector(".select-city");
 const errorDiv = document.querySelector(".error");
 const locationHeader = document.querySelector(".current-location");
 const content = document.querySelector(".content");
+const backgroundImage = document.querySelector(".background-image");
 const tempUnit = document.querySelector("input[type=range]");
 
 tempUnit.addEventListener("change", () => {
-  // change temperatures to celcius
-  // if tempUnit.value === 0
-  // convert all to farenheight
-  // if tempUnit.value === 1
-  // convert all to celcius
+  if (weatherObj) {
+    displayCurrentTemp();
+  }
 });
 
 const displayResults = () => {
   displayCurrentLocation();
   displayCurrentWeather();
+  displayBackgroundImage();
+};
+
+const displayBackgroundImage = () => {
+  // const weather = weatherTypeId();
+  const weather = 850;
+  if (weather >= 200 && weather <= 299) {
+    // Thunderstorm
+    backgroundImage.style.backgroundImage = "url(assets/thunderstorm.jpg)";
+  } else if (
+    (weather >= 300 && weather <= 399) ||
+    (weather >= 500 && weather <= 599)
+  ) {
+    // Drizzle or Rain
+    backgroundImage.style.backgroundImage = "url(assets/rain.jpg)";
+  } else if (weather >= 600 && weather <= 699) {
+    // Snow
+    backgroundImage.style.backgroundImage = "url(assets/snow.jpg)";
+  } else if (weather >= 700 && weather <= 799) {
+    // Atmosphere (fog, smoke, mist, etc)
+    backgroundImage.style.backgroundImage = "url(assets/atmosphere.jpg";
+  } else if (weather > 800 && weather <= 899) {
+    // Clouds
+    backgroundImage.style.backgroundImage = "url(assets/clouds.jpg)";
+  } else {
+    // weather === 800; Clear
+    backgroundImage.style.backgroundImage = "url(assets/clear.jpg)";
+  }
 };
 
 const displayCurrentWeather = () => {
@@ -24,7 +51,6 @@ const displayCurrentWeather = () => {
 };
 
 const displayCurrentTemp = () => {
-
   const tempDiv = document.querySelector(".current-temp");
   if (tempUnit.value === "0") {
     tempDiv.textContent = currentTemp() + "\u00B0";
