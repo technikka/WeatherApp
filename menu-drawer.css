@@ -1,0 +1,65 @@
+#trigger {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0,0,0, 0.5);
+  border-top-right-radius: 40%;
+  border-bottom-right-radius: 40%;
+  display: none;
+}
+
+#trigger img {
+  width: 80%;
+  height: auto;
+  margin: auto;
+}
+
+#trigger.show {
+  display: flex;
+  align-items: center;
+}
+
+#menu-drawer {
+  display: flex;
+  flex-flow: column wrap;
+  font-size: 24px;
+  background: rgba(0,0,0,.5);
+  gap: 20px;
+  padding: 20px;
+  padding-bottom: 60px;
+  top: 0;
+  left: -200px;
+  position: fixed;
+  z-index: -10;
+  opacity: 0%;
+  transition: all 0.3s;
+}
+
+#menu-drawer.show {
+  opacity: 90%;
+  left: 0;
+  width: 90%;
+  z-index: 99
+}
+
+#trigger img:hover {
+  cursor: pointer;
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  background: rgba(0,0,0,.5);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: auto;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+.close img {
+  width: 80%;
+  margin: auto;
+}

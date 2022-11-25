@@ -5,23 +5,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App</title>
+  <link rel="stylesheet" href="menu-drawer.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="content">
     <div class="background-image"></div>
-    <form action="" class="dark-background">
-      <label for="search-location">Search By City or Zipcode</label>
-      <input type="text" name="search-location">
-      <input type="submit" value="Find">
-    </form>
-    <div class="toolbar dark-background">
-      <div class="temp-unit">
-        <span>F</span>
-        <input type="range" min="0" max="1" value="0" step="1">
-        <span>C</span>
+
+    <div id="trigger"><img src="assets/menu-open.png" alt="open menu icon"></div>
+    <div id="menu-drawer" class="show">
+      <div class="close"><img src="assets/close.png" alt=""></div>
+      <form action="" class="dark-background">
+        <label for="search-location">Search By City or Zipcode</label>
+        <input type="text" name="search-location">
+        <input type="submit" value="Find">
+      </form>
+      <div class="toolbar dark-background">
+        <div class="temp-unit">
+          <span>F</span>
+          <input type="range" min="0" max="1" value="0" step="1">
+          <span>C</span>
+        </div>
       </div>
     </div>
+
     <h1 class="current-location"></h1>
     <div class="error"></div>
     <div class="select-city"></div>
@@ -38,6 +45,7 @@
 
 
   </div>
+  <script src="menu-drawer.js"></script>
   <script src="api.js"></script>
   <script src="dom.js"></script>
 </body>

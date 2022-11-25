@@ -96,6 +96,8 @@ searchBtn.addEventListener("click", (event) => {
   } else {
     displayLocationInvalid();
   }
+  toggleTrigger();
+  toggleDrawer();
 });
 
 const displayLocations = (locationsArray) => {

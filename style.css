@@ -15,7 +15,8 @@ body {
   border-radius: 5px;
   margin: 10px;
   background-color: rgba(0,0,0, 0.3);
-  color: white; 
+  color: white;
+  width: max-content; 
 }
 
 .background-image {
@@ -38,19 +39,17 @@ body {
 
 .selectable {
   width: max-content;
-  border: 1px solid grey;
   padding: 10px;
+  background-color: rgba(0,0,0, 0.5);
+  border-radius: 5px;
+  color: white;
 }
 
 .selectable:hover {
   cursor: pointer;
-  background: #e9f5f9;
+  filter: invert(100%);
 }
 
 input[type=range] {
   width: 50px;
-}
-
-.current-temp {
-
 }
