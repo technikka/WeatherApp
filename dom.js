@@ -72,7 +72,12 @@ const displayHumidity = () => {
   const humDiv = document.createElement("div");
   humDiv.classList.add("humidity");
   weatherProperties.appendChild(humDiv);
-  humDiv.textContent = humidity() + "\u0025" + " humidity";
+  const value = document.createElement("div");
+  value.textContent = humidity() + "\u0025";
+  const property = document.createElement("div");
+  property.textContent = "Humidity";
+  humDiv.appendChild(value);
+  humDiv.appendChild(property);
 };
 
 const formatVisibility = (meters) => {
@@ -87,14 +92,25 @@ const displayVisibility = () => {
   const visDiv = document.createElement("div");
   visDiv.classList.add("visibility");
   weatherProperties.appendChild(visDiv);
-  visDiv.textContent = formatVisibility(visibility()) + " visibility";
+  const value = document.createElement("div");
+  value.textContent = formatVisibility(visibility());
+  const property = document.createElement("div");
+  property.textContent = "Visibility";
+  visDiv.appendChild(value);
+  visDiv.appendChild(property);
 };
 
 const displayWindSpeed = () => {
   const windDiv = document.createElement("div");
   windDiv.classList.add("wind-speed");
   weatherProperties.appendChild(windDiv);
-  windDiv.textContent = windSpeed() + " mph";
+
+  const value = document.createElement("div");
+  value.textContent = windSpeed() + " mph";
+  const property = document.createElement("div");
+  property.textContent = "Wind";
+  windDiv.appendChild(value);
+  windDiv.appendChild(property);
 };
 
 searchBtn.addEventListener("click", (event) => {
@@ -119,7 +135,7 @@ searchBtn.addEventListener("click", (event) => {
 const displayLocations = (locationsArray) => {
   toggleTrigger();
   toggleDrawer();
-  const header = document.createElement('h2');
+  const header = document.createElement("h2");
   header.textContent = "Select Location";
   searchResults.appendChild(header);
   locationsArray.forEach(function (location) {

@@ -101,11 +101,13 @@ form input[type=submit]:hover {
   grid-template-rows: repeat(6, 1fr);
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
+  padding: 10px;
 }
 
 .current-location {
   /* row start / col start / row end / col end */
   grid-area: 1 / 1 / 2 / 3;
+  margin: 0;
 }
 
 .current-temp {
@@ -129,12 +131,45 @@ form input[type=submit]:hover {
 
 .humidity {
   grid-area: 6 / 1 / 7 / 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.humidity > div:nth-child(odd) {
+  font-size: 22px;
+}
+
+.humidity >div:nth-child(even) {
+  font-size: 16px;
 }
 
 .visibility {
   grid-area: 6 / 2 / 7 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.visibility > div:nth-child(odd) {
+  font-size: 22px;
+}
+
+.visibility >div:nth-child(even) {
+  font-size: 16px;
 }
 
 .wind-speed {
   grid-area: 6 / 3 / 7 / 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wind-speed > div:nth-child(odd) {
+  font-size: 22px;
+}
+
+.wind-speed >div:nth-child(even) {
+  font-size: 16px;
 }
