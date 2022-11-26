@@ -37,7 +37,7 @@ const visibility = () => {
 }
 
 const windSpeed = () => {
-  return weatherObj.wind.speed;
+  return Math.round(weatherObj.wind.speed);
 }
 
 const weatherTypeId = () => {

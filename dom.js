@@ -2,11 +2,10 @@ const searchField = document.querySelector("input[type=text]");
 const searchBtn = document.querySelector("input[type=submit");
 const searchResults = document.querySelector(".select-city");
 const errorDiv = document.querySelector(".error");
-const locationHeader = document.querySelector(".current-location");
 const content = document.querySelector(".content");
 const backgroundImage = document.querySelector(".background-image");
 const tempUnit = document.querySelector("input[type=range]");
-const weatherProperties = document.querySelector('.weather-properties');
+const weatherProperties = document.querySelector(".weather-properties");
 
 tempUnit.addEventListener("change", () => {
   if (weatherObj) {
@@ -18,7 +17,6 @@ tempUnit.addEventListener("change", () => {
 });
 
 const displayResults = () => {
-  
   displayCurrentLocation();
   displayCurrentWeather();
   displayBackgroundImage();
@@ -43,27 +41,37 @@ const formatTemp = (temp) => {
 };
 
 const displayCurrentTemp = () => {
-  const tempDiv = document.querySelector(".current-temp");
+  const tempDiv = document.createElement("div");
+  tempDiv.classList.add("current-temp");
+  weatherProperties.appendChild(tempDiv);
   tempDiv.textContent = "Current " + formatTemp(currentTemp());
 };
 
 const displayFeelsLike = () => {
-  const tempDiv = document.querySelector(".feels-like");
+  const tempDiv = document.createElement("div");
+  tempDiv.classList.add("feels-like");
+  weatherProperties.appendChild(tempDiv);
   tempDiv.textContent = "Feels Like " + formatTemp(feelsLike());
 };
 
 const displayLowTemp = () => {
-  const tempDiv = document.querySelector(".low-temp");
+  const tempDiv = document.createElement("div");
+  tempDiv.classList.add("low-temp");
+  weatherProperties.appendChild(tempDiv);
   tempDiv.textContent = "Low " + formatTemp(lowTemp());
 };
 
 const displayHighTemp = () => {
-  const tempDiv = document.querySelector(".high-temp");
+  const tempDiv = document.createElement("div");
+  tempDiv.classList.add("high-temp");
+  weatherProperties.appendChild(tempDiv);
   tempDiv.textContent = "High " + formatTemp(highTemp());
 };
 
 const displayHumidity = () => {
-  const humDiv = document.querySelector(".humidity");
+  const humDiv = document.createElement("div");
+  humDiv.classList.add("humidity");
+  weatherProperties.appendChild(humDiv);
   humDiv.textContent = humidity() + "\u0025" + " humidity";
 };
 
@@ -76,18 +84,23 @@ const formatVisibility = (meters) => {
   }
 };
 const displayVisibility = () => {
-  const visDiv = document.querySelector(".visibility");
+  const visDiv = document.createElement("div");
+  visDiv.classList.add("visibility");
+  weatherProperties.appendChild(visDiv);
   visDiv.textContent = formatVisibility(visibility()) + " visibility";
 };
 
 const displayWindSpeed = () => {
-  const windDiv = document.querySelector(".wind-speed");
+  const windDiv = document.createElement("div");
+  windDiv.classList.add("wind-speed");
+  weatherProperties.appendChild(windDiv);
   windDiv.textContent = windSpeed() + " mph";
 };
 
 searchBtn.addEventListener("click", (event) => {
   errorDiv.textContent = "";
   searchResults.textContent = "";
+  weatherProperties.textContent = "";
   event.preventDefault();
   toggleError();
 
@@ -124,6 +137,9 @@ const displayLocations = (locationsArray) => {
 };
 
 const displayCurrentLocation = () => {
+  const locationHeader = document.createElement("h1");
+  locationHeader.classList.add("current-location");
+  weatherProperties.appendChild(locationHeader);
   locationHeader.textContent = locationObj.name + ", " + locationObj.state;
 };
 
@@ -132,8 +148,8 @@ const toggleError = (error) => {
     errorDiv.classList.add("show");
     errorDiv.classList.add("dark-background");
   } else {
-    errorDiv.classList.remove('show')
-    errorDiv.classList.remove('dark-background')
+    errorDiv.classList.remove("show");
+    errorDiv.classList.remove("dark-background");
   }
 };
 
@@ -144,7 +160,6 @@ const displayLocationInvalid = () => {
 };
 
 const displayLocationNotFound = () => {
-  locationHeader.textContent = "";
   toggleError(true);
   errorDiv.textContent = "That location was not found in our database";
 };
