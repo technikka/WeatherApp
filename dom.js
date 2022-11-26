@@ -24,6 +24,9 @@ const displayResults = () => {
 
 const displayCurrentWeather = () => {
   displayCurrentTemp();
+
+  displayWeatherType();
+
   displayFeelsLike();
   displayLowTemp();
   displayHighTemp();
@@ -50,6 +53,29 @@ const displayCurrentTemp = () => {
   tempDiv.textContent = formatTemp(currentTemp());
 };
 
+const formatWeatherType = (type) => {
+  if (type === "Thunderstorm") {
+    return "Stormy Skies";
+  } else if (type === "Drizzle" || type === "Rain") {
+    return "Rainy Skies";
+  } else if (type === "Snow") {
+    return "Snowy Skies";
+  } else if (type === "Clouds") {
+    return "Cloudy Skies";
+  } else if (type === "Clear") {
+    return "Clear Skies";
+  } else {
+    return `${type}y Atmosphere`;
+  }
+};
+
+const displayWeatherType = () => {
+  const typeDiv = document.createElement("div");
+  typeDiv.classList.add("type");
+  weatherProperties.appendChild(typeDiv);
+  typeDiv.textContent = formatWeatherType(weatherType());
+};
+
 const displayFeelsLike = () => {
   const tempDiv = document.createElement("div");
   tempDiv.classList.add("feels-like");
@@ -74,7 +100,7 @@ const displayHighTemp = () => {
 const displayHumidity = () => {
   const humDiv = document.createElement("div");
   humDiv.classList.add("humidity");
-  const backdrop = document.querySelector('.lower-backdrop');
+  const backdrop = document.querySelector(".lower-backdrop");
   backdrop.appendChild(humDiv);
   const value = document.createElement("div");
   value.textContent = humidity() + "\u0025";
@@ -95,7 +121,7 @@ const formatVisibility = (meters) => {
 const displayVisibility = () => {
   const visDiv = document.createElement("div");
   visDiv.classList.add("visibility");
-  const backdrop = document.querySelector('.lower-backdrop');
+  const backdrop = document.querySelector(".lower-backdrop");
   backdrop.appendChild(visDiv);
   const value = document.createElement("div");
   value.textContent = formatVisibility(visibility());
@@ -109,7 +135,7 @@ const displayWindSpeed = () => {
   const windDiv = document.createElement("div");
   windDiv.classList.add("wind-speed");
 
-  const backdrop = document.querySelector('.lower-backdrop');
+  const backdrop = document.querySelector(".lower-backdrop");
   backdrop.appendChild(windDiv);
 
   const value = document.createElement("div");
@@ -198,8 +224,7 @@ const displayLocationNotFound = () => {
 };
 
 const displayBackgroundImage = () => {
-  // const weather = weatherTypeId();
-  const weather = 850;
+  const weather = weatherTypeId();
   if (weather >= 200 && weather <= 299) {
     // Thunderstorm
     backgroundImage.style.backgroundImage = "url(assets/thunderstorm.jpg)";
