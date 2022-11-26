@@ -44,6 +44,10 @@ const weatherTypeId = () => {
   return weatherObj.weather[0].id;
 }
 
+const weatherType = () => {
+  return weatherObj.weather[0].main;
+}
+
 async function getCurrentWeather() {
   try {
     let response = await fetch(

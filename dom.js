@@ -27,6 +27,9 @@ const displayCurrentWeather = () => {
   displayFeelsLike();
   displayLowTemp();
   displayHighTemp();
+
+  displayLowerBackdrop();
+
   displayHumidity();
   displayVisibility();
   displayWindSpeed();
@@ -71,7 +74,8 @@ const displayHighTemp = () => {
 const displayHumidity = () => {
   const humDiv = document.createElement("div");
   humDiv.classList.add("humidity");
-  weatherProperties.appendChild(humDiv);
+  const backdrop = document.querySelector('.lower-backdrop');
+  backdrop.appendChild(humDiv);
   const value = document.createElement("div");
   value.textContent = humidity() + "\u0025";
   const property = document.createElement("div");
@@ -91,7 +95,8 @@ const formatVisibility = (meters) => {
 const displayVisibility = () => {
   const visDiv = document.createElement("div");
   visDiv.classList.add("visibility");
-  weatherProperties.appendChild(visDiv);
+  const backdrop = document.querySelector('.lower-backdrop');
+  backdrop.appendChild(visDiv);
   const value = document.createElement("div");
   value.textContent = formatVisibility(visibility());
   const property = document.createElement("div");
@@ -103,7 +108,9 @@ const displayVisibility = () => {
 const displayWindSpeed = () => {
   const windDiv = document.createElement("div");
   windDiv.classList.add("wind-speed");
-  weatherProperties.appendChild(windDiv);
+
+  const backdrop = document.querySelector('.lower-backdrop');
+  backdrop.appendChild(windDiv);
 
   const value = document.createElement("div");
   value.textContent = windSpeed() + " mph";
@@ -111,6 +118,13 @@ const displayWindSpeed = () => {
   property.textContent = "Wind";
   windDiv.appendChild(value);
   windDiv.appendChild(property);
+};
+
+const displayLowerBackdrop = () => {
+  const div = document.createElement("div");
+  div.classList.add("lower-backdrop");
+  div.classList.add("dark-background");
+  weatherProperties.appendChild(div);
 };
 
 searchBtn.addEventListener("click", (event) => {
