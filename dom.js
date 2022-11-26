@@ -44,7 +44,7 @@ const displayCurrentTemp = () => {
   const tempDiv = document.createElement("div");
   tempDiv.classList.add("current-temp");
   weatherProperties.appendChild(tempDiv);
-  tempDiv.textContent = "Current " + formatTemp(currentTemp());
+  tempDiv.textContent = formatTemp(currentTemp());
 };
 
 const displayFeelsLike = () => {
@@ -119,6 +119,9 @@ searchBtn.addEventListener("click", (event) => {
 const displayLocations = (locationsArray) => {
   toggleTrigger();
   toggleDrawer();
+  const header = document.createElement('h2');
+  header.textContent = "Select Location";
+  searchResults.appendChild(header);
   locationsArray.forEach(function (location) {
     let newDiv = document.createElement("div");
     newDiv.classList.add("selectable");
@@ -140,7 +143,7 @@ const displayCurrentLocation = () => {
   const locationHeader = document.createElement("h1");
   locationHeader.classList.add("current-location");
   weatherProperties.appendChild(locationHeader);
-  locationHeader.textContent = locationObj.name + ", " + locationObj.state;
+  locationHeader.textContent = locationObj.name;
 };
 
 const toggleError = (error) => {
