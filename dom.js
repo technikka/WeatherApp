@@ -24,9 +24,7 @@ const displayResults = () => {
 
 const displayCurrentWeather = () => {
   displayCurrentTemp();
-
   displayWeatherType();
-
   displayFeelsLike();
   displayLowTemp();
   displayHighTemp();
@@ -245,6 +243,6 @@ const displayBackgroundImage = () => {
     backgroundImage.style.backgroundImage = "url(assets/clouds.jpg)";
   } else {
     // weather === 800; Clear
-    backgroundImage.style.backgroundImage = "url(assets/clear.jpg)";
+    backgroundImage.style.backgroundImage = "url(assets/blue.jpg)";
   }
 };
