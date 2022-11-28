@@ -71,7 +71,7 @@ form input[type=text] {
 }
 
 form input[type=text]:focus {
-  outline: solid #44a769;
+  outline: solid #814a65;
 }
 
 form input[type=submit] {
@@ -89,13 +89,13 @@ form input[type=submit]:hover {
 
 .error {
   display: none;
+  font-size: 16px;
 }
 
 .error.show {
-  grid-column-start: 1;
-  grid-row-start: 2;
+  grid-area: 2 / 1 / 3 / 3;
   display: block;
-  color: #44a769;
+  color: #d3979a;
 }
 
 .weather-properties {
