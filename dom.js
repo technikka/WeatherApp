@@ -45,10 +45,15 @@ const formatTemp = (temp) => {
 };
 
 const displayCurrentTemp = () => {
-  const tempDiv = document.createElement("div");
-  tempDiv.classList.add("current-temp");
-  weatherProperties.appendChild(tempDiv);
-  tempDiv.textContent = formatTemp(currentTemp());
+  const existingDiv = document.querySelector(".current-temp");
+  if (existingDiv) {
+    existingDiv.textContent = formatTemp(currentTemp());
+  } else {
+    const tempDiv = document.createElement("div");
+    tempDiv.classList.add("current-temp");
+    weatherProperties.appendChild(tempDiv);
+    tempDiv.textContent = formatTemp(currentTemp());
+  }
 };
 
 const formatWeatherType = (type) => {
@@ -75,24 +80,39 @@ const displayWeatherType = () => {
 };
 
 const displayFeelsLike = () => {
-  const tempDiv = document.createElement("div");
-  tempDiv.classList.add("feels-like");
-  weatherProperties.appendChild(tempDiv);
-  tempDiv.textContent = "Feels Like " + formatTemp(feelsLike());
+  const existingDiv = document.querySelector(".feels-like");
+  if (existingDiv) {
+    existingDiv.textContent = "Feels Like " + formatTemp(feelsLike());
+  } else {
+    const tempDiv = document.createElement("div");
+    tempDiv.classList.add("feels-like");
+    weatherProperties.appendChild(tempDiv);
+    tempDiv.textContent = "Feels Like " + formatTemp(feelsLike());
+  }
 };
 
 const displayLowTemp = () => {
-  const tempDiv = document.createElement("div");
-  tempDiv.classList.add("low-temp");
-  weatherProperties.appendChild(tempDiv);
-  tempDiv.textContent = "Low " + formatTemp(lowTemp());
+  const existingDiv = document.querySelector(".low-temp");
+  if (existingDiv) {
+    existingDiv.textContent = "Low " + formatTemp(lowTemp());
+  } else {
+    const tempDiv = document.createElement("div");
+    tempDiv.classList.add("low-temp");
+    weatherProperties.appendChild(tempDiv);
+    tempDiv.textContent = "Low " + formatTemp(lowTemp());
+  }
 };
 
 const displayHighTemp = () => {
-  const tempDiv = document.createElement("div");
-  tempDiv.classList.add("high-temp");
-  weatherProperties.appendChild(tempDiv);
-  tempDiv.textContent = "High " + formatTemp(highTemp());
+  const existingDiv = document.querySelector(".high-temp");
+  if (existingDiv) {
+    existingDiv.textContent = "High " + formatTemp(highTemp());
+  } else {
+    const tempDiv = document.createElement("div");
+    tempDiv.classList.add("high-temp");
+    weatherProperties.appendChild(tempDiv);
+    tempDiv.textContent = "High " + formatTemp(highTemp());
+  }
 };
 
 const displayHumidity = () => {
@@ -211,9 +231,8 @@ const toggleError = (error) => {
 };
 
 const displayLocationInvalid = () => {
-  locationHeader.textContent = "";
   toggleError(true);
-  errorDiv.textContent = "Please enter a valid zipcode or string";
+  errorDiv.textContent = "Please enter a valid zipcode or city.";
 };
 
 const displayLocationNotFound = () => {
